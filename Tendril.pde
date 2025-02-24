@@ -1,21 +1,31 @@
-class Tendril
-{
-  public final static int SEG_LENGTH = 4; //length of each segment in the tendril
-  private int myNumSegments, myX, myY;
-  private double myAngle;
-  
-  /**
-   Class constructor
-   len is how many segments in this tendril (each a fixed length, 4 is a good start)
-   theta is tendril starting angle in radians 
-   x, y  is the starting (x,y) coordinate
-   */
-  public Tendril(int len, double theta, int x, int y)
-  {
-    //your code here
-  }
-  public void show()
-  {
-    //your code here
-  }
+class Tendril {
+    public final static int SEG_LENGTH = 4; // Length of each segment
+    private int myNumSegments, myX, myY;
+    private double myAngle;
+
+    public Tendril(int len, double theta, int x, int y) {
+        myNumSegments = len;
+        myAngle = theta;
+        myX = x;
+        myY = y;
+    }
+
+    public void show() {
+        int startX = myX, startY = myY;
+        stroke(255, 255 - myNumSegments * 5, 0); // Stroke color based on length
+
+        for (int i = 0; i < myNumSegments; i++) {
+            myAngle += random(-0.2, 0.2); // Random wiggle
+            int endX = startX + (int) (cos((float) myAngle) * SEG_LENGTH);
+            int endY = startY + (int) (sin((float) myAngle) * SEG_LENGTH);
+            line(startX, startY, endX, endY);
+            startX = endX;
+            startY = endY;
+        }
+
+        // Recursively create a new cluster at the end if the tendril is long enough
+        if (myNumSegments >= 3) {
+            new Cluster(myNumSegments / 2, startX, startY);
+        }
+    }
 }
