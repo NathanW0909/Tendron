@@ -1,9 +1,11 @@
-public class Cluster
-{
-    public final static int NUM_STEMS = 7; //number of tendrils per cluster
+public class Cluster {
+    public final static int NUM_STEMS = 7; // Number of tendrils per cluster
 
-    public Cluster(int len, int x, int y)
-    {
-        // your code here
+    public Cluster(int len, int x, int y) {
+        for (int i = 0; i < NUM_STEMS; i++) {
+            double angle = i * (TWO_PI / NUM_STEMS); // Evenly spaced tendrils
+            Tendril t = new Tendril(len, angle, x, y);
+            t.show();
+        }
     }
 }
