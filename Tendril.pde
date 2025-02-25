@@ -12,7 +12,7 @@ class Tendril {
 
     public void show() {
         int startX = myX, startY = myY;
-        stroke(255, 255 - myNumSegments * 5, 0); // Stroke color based on length
+        stroke(0); // Black stroke
 
         for (int i = 0; i < myNumSegments; i++) {
             myAngle += random(-0.2, 0.2); // Random wiggle
